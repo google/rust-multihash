@@ -18,6 +18,8 @@ extern crate openssl;
 
 use openssl::crypto::hash::{hash, Type};
 
+/// List of types currently supported in Multihash.
+/// SHA3, Blake2b, and Blake2s are not yet supported in OpenSSL, so are not available in rust-multihash.
 pub enum HashTypes {
     SHA1,
     SHA2256,
@@ -40,6 +42,16 @@ impl HashTypes {
     }
 }
 
+/// Hashes the input using the given hash algorithm. Also adds the leading bytes for type of algo
+/// and length of digest.
+///
+/// # Example
+/// ```
+/// use rust-multihash:::{HashTypes, multihash};
+///
+/// let testphrase = b"Hello World"
+/// let digest = multihash(HashTypes::SHA2512, testphrase.to_vec());
+/// ```
 pub fn multihash(wanthash: HashTypes, input: Vec<u8>) -> Result<Vec<u8>, String> {
     let ssl_hash: Option<Type> = match wanthash {
         HashTypes::SHA1 => Some(Type::SHA1),
