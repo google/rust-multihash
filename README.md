@@ -16,4 +16,4 @@ let hash = multihash(HashType::SHA2256, "Hello World".to_vec());
 
 Contributing
 ----
-This is a Google project. To contribute code please agree to the [Google Contributor License Agreement](https://cla.developers.google.com/about/google-individual). Then please feel free to fork and issue a pull request.
+This is not an official Google project, but it is governed by the Google Contributor License Agreement. To contribute code please agree to the [Google Contributor License Agreement](https://cla.developers.google.com/about/google-individual). Then please feel free to fork and issue a pull request.
