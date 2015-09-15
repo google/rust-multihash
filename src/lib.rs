@@ -47,9 +47,9 @@ impl HashTypes {
 ///
 /// # Example
 /// ```
-/// use rust-multihash:::{HashTypes, multihash};
+/// use rust_multihash::{HashTypes, multihash};
 ///
-/// let testphrase = b"Hello World"
+/// let testphrase = b"Hello World";
 /// let digest = multihash(HashTypes::SHA2512, testphrase.to_vec());
 /// ```
 pub fn multihash(wanthash: HashTypes, input: Vec<u8>) -> Result<Vec<u8>, String> {
