@@ -41,6 +41,19 @@ impl HashTypes {
             HashTypes::Blake2s => 0x41,
         }
     }
+
+    /// Try to interpret a byte as a possible HashType
+    pub fn from_u8(b: u8) -> Option<HashTypes> {
+        match b {
+            0x11 => Some(HashTypes::SHA1),
+            0x12 => Some(HashTypes::SHA2256),
+            0x13 => Some(HashTypes::SHA2512),
+            0x14 => Some(HashTypes::SHA3),
+            0x40 => Some(HashTypes::Blake2b),
+            0x41 => Some(HashTypes::Blake2s),
+            _ => None
+        }
+    }
 }
 
 /// Hashes the input using the given hash algorithm. Also adds the leading bytes for type of algo
@@ -86,5 +99,8 @@ mod test {
         result.insert(1, length);
 
         assert_eq!(multihash(HashTypes::SHA2256, example.to_vec()).unwrap(), result);
+
+        assert_eq!(HashTypes::from_u8(0x12), Some(HashTypes::SHA2256));
+        assert_eq!(HashTypes::from_u8(0x01), None);
     }
 }
