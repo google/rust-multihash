@@ -20,6 +20,7 @@ use openssl::crypto::hash::{hash, Type};
 
 /// List of types currently supported in Multihash.
 /// SHA3, Blake2b, and Blake2s are not yet supported in OpenSSL, so are not available in rust-multihash.
+#[derive(PartialEq, Clone, Copy, Debug)]
 pub enum HashTypes {
     SHA1,
     SHA2256,
